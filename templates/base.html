@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Website</title>
+    <link rel="stylesheet" href="{% static 'css/mysite.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Tera&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+<div class="jumbotron">
+<div class="topnav">
+
+    <a href="/cat_welcome/">Category</a> &nbsp;&nbsp;
+    <a href="/prod_welcome/">Product</a>&nbsp;&nbsp;
+    <a href="/pri_welcome/">Price</a>&nbsp;&nbsp;
+</div>
+</div>
+</div>
+{% block content %}
+{% endblock %}
+</body>
+</html>

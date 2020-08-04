@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>{{note}}</h3>
+
+    <br>
+
+    <form action="/prod_persist/" method="post">
+        {% csrf_token %}
+        Product ID :     <input type="text" name="id" value="{{prod.id}}"> <br><br>
+        Product Name :     <input type="text" name="name" value="{{prod.name}}"> <br><br>
+        Category Type :  <select name="type">
+                <option value="0">--Select--</option>
+            {% for cat in categories %}
+                    <option value="{{cat.id}}">{{cat.type}} - {{cat.id}}</option>
+            {% endfor %}
+        </select><br><br>
+        <input type="submit">
+    </form>
+
+    <br>
+
+    <table>
+            <thead>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Category Type</th>
+                <th>Action </th>
+            </thead>
+    {% for prod in products %}
+            <tbody>
+                <td>{{prod.id}}</td>
+                <td>{{prod.name}}</td>
+                <td>{{prod.category.type}}</td>
+            <td>
+               <a href="/prod_edit/{{prod.id}}">EDIT</a>
+                    &nbsp;&nbsp;
+               <a href="/prod_delete/{{prod.id}}">DELETE</a>
+
+                </td>
+
+
+            </tbody>
+        {% endfor %}
+
+    </table>
+{% endblock %}

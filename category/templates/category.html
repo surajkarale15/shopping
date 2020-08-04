@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>{{note}}</h3>
+
+    <br>
+
+    <form action="/cat_persist/" method="post">
+<!--    <form action="http://localhost:8000/category/persist/" method="post">-->
+
+
+        {% csrf_token %}
+        Category ID  :-     <input type="text" name="id" value="{{cat.id}}"> <br><br>
+        Category Type  :-     <input type="text" name="type" value="{{cat.type}}"> <br><br>
+        <input type="submit">
+    </form>
+
+    <br>
+
+    <table>
+            <thead>
+                <th>Category ID</th>
+                <th>Category Type</th>
+                <th>Action </th>
+            </thead>
+    {% for cat in categories %}
+            <tbody>
+                <td>{{cat.id}}</td>
+                <td>{{cat.type}}</td>
+            <td>
+
+                   <a href="/cat_edit/{{cat.id}}">Edit</a>
+                    <a href="/cat_delete/{{cat.id}}">DELETE</a>
+
+
+                </td>
+
+
+            </tbody>
+        {% endfor %}
+
+    </table>
+{% endblock %}

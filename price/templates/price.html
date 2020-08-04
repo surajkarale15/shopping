@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>{{note}}</h3>
+
+    <br>
+
+    <form action="/pri_persist/" method="post">
+        {% csrf_token %}
+        Price ID :     <input type="text" name="id" value="{{pri.id}}"> <br><br>
+        Product Name :  <select name="name">
+                <option value="0">--Select--</option>
+            {% for prod in products %}
+                    <option value="{{prod.id}}">{{prod.name}} - {{prod.id}}</option>
+            {% endfor %}
+                </select><br><br>
+        Product Quantity :     <input type="text" name="quantity" value="{{pri.prod_qty}}"> <br><br>
+        Product Size/Single Quantity :     <input type="text" name="pro_per_price" value="{{pri.prod_price_qty}}"> <br><br>
+        Product Price :     <input type="text" name="price" value="{{pri.prod_price}}"> <br><br>
+        <input type="submit">
+    </form>
+
+    <br>
+
+    <table>
+            <thead>
+                <th>Price ID</th>
+                <th>Product Name</th>
+                <th>Product Quantity</th>
+                <th>Product Size/Single Quantity</th>
+                <th>Product Price</th>
+                <th>Action </th>
+            </thead>
+    {% for pri in prices %}
+            <tbody>
+                <td>{{pri.id}}</td>
+                <td>{{pri.product.name}}</td>
+                <td>{{pri.prod_qty}}</td>
+                <td>{{pri.prod_price_qty}}</td>
+                <td>{{pri.prod_price}}</td>
+            <td>
+               <a href="/pri_edit/{{pri.id}}">EDIT</a>
+                    &nbsp;&nbsp;
+               <a href="/pri_delete/{{pri.id}}">DELETE</a>
+
+                </td>
+
+
+            </tbody>
+        {% endfor %}
+
+    </table>
+{% endblock %}
